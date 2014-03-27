@@ -8,5 +8,13 @@
     "start": "node server.js"
   },
   "author": "xMachinae",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mime": "^1.2.11",
+    "shortid": "^2.0.0",
+    "socket.io": "^0.9.16",
+    "http": "0.0.0",
+    "path": "^0.4.9",
+    "url": "^0.7.9"
+  }
 }
