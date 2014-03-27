@@ -8,7 +8,7 @@ var http = require("http").createServer(handler),
     rankAArray = {};
     id = 0,
     hasVoted = {};
-    port = process.env.PORT || 8888;
+    port = process.env.PORT || 5000;
 
 
 http.listen(parseInt(port, 10))

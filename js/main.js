@@ -6,7 +6,7 @@ var appView = new app.AppView({
 // Connect to socket
 // When the list is updated, print out the new list
 var rankObjects = {};
-var socket = io.connect('http://localhost');
+var socket = io.connect('/');
 socket.on('newList', function(data) {
   appView.removeAll();
   for(var id in data) {
