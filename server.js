@@ -1,18 +1,21 @@
-var http = require("http"),
+var http = require("http").createServer(handler),
     url = require("url"),
     path = require("path"),
     fs = require("fs"),
     mime = require("mime")
-    io = require('socket.io').listen(8080),
+    io = require('socket.io').listen(http),
     shortId = require('shortid'),
     rankAArray = {};
     id = 0,
     hasVoted = {};
-    port = process.argv[2] || 8888;
+    port = process.env.PORT || 8888;
+
+
+http.listen(parseInt(port, 10))
 
 /* Sets up webserver
 */
-http.createServer(function(request, response) {
+function handler(request, response) {
  
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
@@ -40,7 +43,7 @@ http.createServer(function(request, response) {
       response.end();
     });
   });
-}).listen(parseInt(port, 10));
+}
 
 
 /* Sets up websocket with socket.io
