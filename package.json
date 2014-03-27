@@ -1,0 +1,12 @@
+{
+  "name": "rankit-demo",
+  "version": "0.0.0",
+  "description": "A simple app where you can vote on a set of alternatives and get immediate feedback.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "xMachinae",
+  "license": "ISC"
+}
