@@ -59,12 +59,12 @@ io.sockets.on('connection', function(socket) {
   socket.emit('banner', banner);
   socket.emit('newList', rankAArray);
   socket.on('upVote', function(data){
-    if(hasVoted[socket.id] === false) {
+    //if(hasVoted[socket.id] === false) {
       rankAArray[data].votes += 1;
       io.sockets.emit('newUpVote', data);
       console.log(data + ' ' + rankAArray[data].votes);
       hasVoted[socket.id] = true;
-    }
+    //}
   });
 });
 
