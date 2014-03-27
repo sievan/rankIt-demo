@@ -4,11 +4,17 @@ body {
   padding-bottom: 20px;
 }
 
+
 .listBox {
+  width: 400px;
   background-color: #eee;
   border-radius: 5px;
   padding: 3px; 
   margin: 2px;
+  font-size: 26px;
+  font-weight: 100;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .vLine {
@@ -56,7 +62,7 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
-  background-color: #ded;
+  background-color: #cec;
 }
 .jumbotron .btn {
   padding: 14px 24px;
@@ -65,7 +71,8 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .marketing p + h4 {
   margin-top: 28px;

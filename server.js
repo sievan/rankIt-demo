@@ -1,13 +1,17 @@
-var http = require("http").createServer(handler),
+var http = require("http").createServer(httpHandler),
     url = require("url"),
     path = require("path"),
     fs = require("fs"),
     mime = require("mime")
     io = require('socket.io').listen(http),
     shortId = require('shortid'),
-    rankAArray = {};
+    rankAArray = {},
+    banner = {
+      heading: "Which is the best fruit?",
+      subheading: "Press any button to vote"
+    },
     id = 0,
-    hasVoted = {};
+    hasVoted = {},
     port = process.env.PORT || 5000;
 
 
@@ -15,7 +19,7 @@ http.listen(parseInt(port, 10))
 
 /* Sets up webserver
 */
-function handler(request, response) {
+function httpHandler(request, response) {
  
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
@@ -52,6 +56,7 @@ io.sockets.on('connection', function(socket) {
   console.log(socket.id)
   console.log('client connected');
   hasVoted[socket.id] = false;
+  socket.emit('banner', banner);
   socket.emit('newList', rankAArray);
   socket.on('upVote', function(data){
     //if(hasVoted[socket.id] === false) {
@@ -65,11 +70,11 @@ io.sockets.on('connection', function(socket) {
 
 
 // DEBUG PLACEHOLDERS
-rankAArray[shortId.generate()] = {title: 'foo', votes: 0};
-rankAArray[shortId.generate()] = {title: 'bar', votes: 0};
-rankAArray[shortId.generate()] = {title: 'baz', votes: 0};
-rankAArray[shortId.generate()] = {title: 'spam', votes: 0};
-rankAArray[shortId.generate()] = {title: 'eggs', votes: 0};
+rankAArray[shortId.generate()] = {title: 'Apple', votes: 0};
+rankAArray[shortId.generate()] = {title: 'Orange', votes: 0};
+rankAArray[shortId.generate()] = {title: 'Pear', votes: 0};
+rankAArray[shortId.generate()] = {title: 'Melon', votes: 0};
+rankAArray[shortId.generate()] = {title: 'Mango', votes: 0};
 
 
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");

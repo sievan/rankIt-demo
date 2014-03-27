@@ -41,7 +41,6 @@ app.RankList = Backbone.Collection.extend({
 // View for a single rank element
 app.RankView = Backbone.View.extend({
   className: 'listBox',
-  tagName: 'h3',
   template: _.template($('#item-template').html()),
   events: {
     'click #clickButton': 'upVote'
@@ -55,10 +54,13 @@ app.RankView = Backbone.View.extend({
   },
   update: function() {
     this.render();
-    this.$el.css({width: "340px", "background-color": "#8e8"});
+    this.$el.stop(true,true).animate({
+      width:'+=40',
+      backgroundColor:'#8e8'
+    },50);
     // stop() Removes the previous animation from the queue, but does not jump to the end of the previous animation
-    this.$el.stop(true,false).animate({
-      width:'300px',
+    this.$el.stop(true,true).animate({
+      width:'-=40',
       backgroundColor:'#eee'
     },300);
   },
@@ -72,10 +74,8 @@ app.RankView = Backbone.View.extend({
 app.AppView = Backbone.View.extend({
   el: '#ranked-list',
   initialize: function() {
-    //app.rankList.on('add', this.addItem, this);
     this.collection.on('add', this.addItem, this);
     this.collection.on('change', this.update, this);
-    //collection.
   },
 
   addItem: function(rank) {
@@ -88,16 +88,17 @@ app.AppView = Backbone.View.extend({
     $('#ranked-list').html('');
     this.collection.sort();
     this.collection.each(this.addItem, this);
-    //$(".listbox").css({width: "340px", "background-color": "#cce"});
+    $('.viewText').fadeOut(100);
     // stop() Removes the previous animation from the queue, but does not jump to the end of the previous animation
     $(".listbox").animate({
-      width:'340px',
+      width:'+=40',
       backgroundColor:'#cce'
     },100);
     $(".listbox").animate({
-      width:'300px',
+      width:'-=40px',
       backgroundColor:'#eee'
     },300);
+    $('.viewText').fadeIn(700);
   },
 
   removeAll: function() {
