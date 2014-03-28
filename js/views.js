@@ -1,42 +1,5 @@
-var app = {}; // namespace for app
-
-// model for an object in the ranked list
-app.RankObject = Backbone.Model.extend({
-  defaults: {
-    id: 0,
-    title: '',
-    votes: 0
-  }
-});
-
-// collection to represent the list
-app.RankList = Backbone.Collection.extend({
-  model: app.RankObject,
-  comparator: function(model){
-    return -model.get('votes');
-  },
-  localStorage: new Store("backbone-list"),
-  
-  // Check if collection is sorted in descending order
-  isSorted: function() {
-    var voteArray = this.pluck('votes');
-    for(var i = 1; i < voteArray.length; i++) {
-      if(voteArray[i] > voteArray[i-1]) {
-        return false;
-      }
-    }
-    return true;
-  },
-
-  // Increments votes attribute by 1
-  upVoteObject: function(id) {
-    var nVotes = this.get(id).get('votes');
-    this.get(id).set('votes', nVotes + 1);
-  }
-});
-
-
-// Views
+/*  Contains views for the rankObjects and for the list.
+*/
 
 // View for a single rank element
 app.RankView = Backbone.View.extend({
@@ -54,11 +17,14 @@ app.RankView = Backbone.View.extend({
   },
   update: function() {
     this.render();
+    this.animate();
+  },
+  animate: function() {
+    // stop() Removes the previous animation from the queue, and jumps to the end of the previous animation
     this.$el.stop(true,true).animate({
       width:'+=40',
       backgroundColor:'#8e8'
     },50);
-    // stop() Removes the previous animation from the queue, but does not jump to the end of the previous animation
     this.$el.stop(true,true).animate({
       width:'-=40',
       backgroundColor:'#eee'
@@ -82,12 +48,14 @@ app.AppView = Backbone.View.extend({
     var view = new app.RankView({model: rank});
     $('#ranked-list').append(view.render().el);
   },
-
   // Remove all from view, add all from collection and animate all views
   addAll: function() {
     $('#ranked-list').html('');
     this.collection.sort();
     this.collection.each(this.addItem, this);
+    this.animate();
+  },
+  animate: function() {
     $('.viewText').fadeOut(100);
     // stop() Removes the previous animation from the queue, but does not jump to the end of the previous animation
     $(".listbox").animate({
@@ -100,7 +68,6 @@ app.AppView = Backbone.View.extend({
     },300);
     $('.viewText').fadeIn(700);
   },
-
   removeAll: function() {
     $('#ranked-list').html('');
     this.collection.reset();
@@ -112,6 +79,3 @@ app.AppView = Backbone.View.extend({
     }
   }
 });
-
-
-

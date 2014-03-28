@@ -1,4 +1,5 @@
-// Banner at the top
+/*  View and model for banner at the top of the page
+*/
 app.Banner = Backbone.Model.extend({
   defaults: {
   	heading: 'Loading...',

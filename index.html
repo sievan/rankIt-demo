@@ -3,24 +3,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <meta name="description" content="Vote on things and rank them immediately">
+    <meta name="author" content="Jacob Sievers">
 
     <title>rankIt</title>
 
     <!-- Bootstrap core CSS -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="narrow.css" rel="stylesheet">
+    <!-- Custom stylesheet -->
+    <link href="rankit.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body>
 
     <div class="container">
@@ -32,36 +30,24 @@
         </ul>
         <h3 class="text-muted">rankIt</h3>
       </div>
-
       <div class="jumbotron" id="heading">
-
       </div>
-
-      <script type="text/template" id="heading-template">
-        <h1><%- heading %></h1>
-        <p><%- subheading %></p>
-      </script>
-
-      
+        <script type="text/template" id="heading-template">
+          <h1><%- heading %></h1>
+          <p><%- subheading %></p>
+        </script>
       <div  id="ranked-list">
-
       </div>
-
       <script type="text/template" id="item-template">
         <div class="view">
-          
           <button type="button" class="btn btn-default" id="clickButton">Vote!</button>
           <span class="viewText">
-          <label><%- votes %></label>
-          <span class="vLine">|</span>
-          <%- title %>
+            <label><%- votes %></label>
+            <span class="vLine">|</span>
+            <%- title %>
           </span>
         </div>
       </script>
-
-        
-      
-
       <div class="footer">
         <p>&copy; Jacob Sievers 2014</p>
       </div>
@@ -79,7 +65,8 @@
 
     <!-- rankIt javascript files -->
 
-    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/models.js" type="text/javascript"></script>
+    <script src="js/views.js" type="text/javascript"></script>
     <script src="js/banner.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
   </body>
