@@ -11,6 +11,11 @@ var appView = new app.AppView({
 
 // Connect to socket
 var socket = io.connect('/');
+
+/*
+* Socket events
+*/
+
 socket.on('banner', function(data){
 	app.banner.set({heading: data.heading, subheading: data.subheading});
 });

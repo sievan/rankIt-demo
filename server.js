@@ -17,7 +17,9 @@ var http = require("http").createServer(httpHandler),
 
 http.listen(parseInt(port, 10))
 
-/* Sets up webserver
+/* Sets up webserver.
+*
+*  IMPORTANT: Not suitable for production. This is only for demo purposes.
 */
 function httpHandler(request, response) {
  
